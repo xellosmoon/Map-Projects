@@ -1,0 +1,881 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+*
+{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Ubuntu', sans-serif;
+}
+:root
+{
+    --blue: #287bff;
+    --white: #fff;
+    --grey: #f5f5f5;
+    --black1: #222;
+    --black2: #999;
+}
+body
+{
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+.container
+{
+  position: relative;
+  width: 100%;
+}
+.navigation
+{
+  position: fixed;
+  width: 300px;
+  height: 100%;
+  background: var(--blue);
+  border-left: 10px solid var(--blue);
+  transition: 0.5s;
+  overflow: hidden;
+}
+.navigation.active
+{
+  width: 80px;
+}
+.navigation ul
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.navigation ul li
+{
+  position: relative;
+  width: 100%;
+  list-style: none;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+.navigation ul li:hover,
+.navigation ul li.hovered
+{
+  background: var(--white);
+}
+.navigation ul li:nth-child(1)
+{
+  margin-bottom: 40px;
+  pointer-events: none;
+}
+.navigation ul li a
+{
+   position: relative;
+   display: block;
+   width: 100%;
+   display: flex;
+   text-decoration: none;
+   color: var(--white);
+}
+.navigation ul li:hover a,
+.navigation ul li.hovered a
+{
+  color: var(--blue);
+}
+.navigation ul li a .icon
+{
+  position: relative;
+  display: block;
+  min-width: 60px;
+  height: 60px;
+  line-height: 70px;
+  text-align: center;
+}
+.navigation ul li a .icon ion-icon
+{
+  font-size: 1.75em;
+}
+.navigation ul li a .title
+{
+  position: relative;
+  display: block;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  text-align: start;
+  white-space nowrap;
+}
+/* curve outside*/
+.navigation ul li:hover a::before,
+.navigation ul li.hovered a::before,
+{
+  content: '';
+  position: absolute;
+  right: 0;
+  top: -50px;
+  width: 50px;
+  height: 50px;
+  background:  transparent;
+  border-radius: 50%;
+  box-shadow: 35px 35px 0 10px var(--white);
+  pointer-events: none;
+}
+.navigation ul li:hover a::after,
+.navigation ul li:hovered a::after
+{
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: -50px;
+  width: 50px;
+  height: 50px;
+  background:  transparent;
+  border-radius: 50%;
+  box-shadow: 35px -35px 0 10px var(--white);
+  pointer-events: none;
+}
+
+/* main*/
+.main
+{
+  position: absolute;
+  width: calc(100% - 300px);
+  left: 300px;
+  min-height: 100vh;
+  background: var(--white);
+  transition: 0.5s;
+}
+.main.active
+{
+  width: calc(100% - 80px);
+  left: 80px;
+}
+.topbar
+{
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+.toggle
+{
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5em;
+  cursor: pointer;
+}
+.search
+{
+  position: relative;
+  width: 400px;
+  margin: 0 10px;
+}
+.search label
+{
+  position: relative;
+  width: 100%;
+}
+.search label input
+{
+  width: 100%;
+  height: 40px;
+  border-radius: 40px;
+  padding: 5px 20px;
+  padding-left: 35px;
+  font-size: 18px;
+  outline: none;
+  border: 1px solid var(--black2);
+}
+.search label ion-icon
+{
+  position: absolute;
+  top: 0;
+  left: 10px;
+  font-size: 1.2em;
+}
+.user
+{
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.cardBox
+{
+  position:relative;
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-gap: 30px;
+}
+.cardBox .card
+{
+  position: relative;
+  background: var(--white);
+  padding: 30px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  box-shadow: 0 7px 25px rgba(0,0,0,0.08);
+}
+.cardBox .card .numbers
+{
+   position: relative;
+   font-weight: 500;
+   font-size: 2.5em;
+   color: var(--blue);
+}
+.cardBox .card .cardName
+{
+  color: var(--black2);
+  font-size: 1.1em;
+  margin-top: 5px;
+}
+.cardBox .card .iconBx
+{
+  font-size: 3.5em;
+  color: var(--black2);
+}
+.cardBox .card:hover
+{
+  background: var(--blue);
+}
+.cardBox .card:hover .numbers,
+.cardBox .card:hover .cardName,
+.cardBox .card:hover .iconBx
+{
+  color: var(--white);
+}
+
+/* Charts */
+.graphBox
+{
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 30px;
+  min-height: 200px;
+
+}
+.graphBox .box
+{
+  position: relative;
+  background: #fff;
+  padding: 20px;
+  width: 100%;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+}
+
+.details
+{
+  position relative;
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 30px;
+  /* margin-top: 10px; */
+}
+.details .recentOrders
+{
+  position: relative;
+  display: grid;
+  min-height: 500px;
+  background: var(--white);
+  padding: 20px;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+}
+.cardHeader
+{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+}
+.cardHeader h2
+{
+  font-weight: 600;
+  color: var(--blue);
+}
+.btn
+{
+  position: relative;
+  padding: 5px 10px;
+  background: var(--blue);
+  text-decoration: none;
+  color: var(--white);
+  border-radius: 6px;
+}
+.details table
+{
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+.details table thead td
+{
+  font-weight: 600;
+}
+.details .recentOrders table tr
+{
+  color: var(--black1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.details .recentOrders table tr:last-child
+{
+  border-bottom: none;
+}
+.details .recentOrders table tr:hover
+{
+  background: var(--blue);
+  color: var(--white);
+}
+.details .recentOrders table tr td
+{
+  padding: 10px;
+}
+.details .recentOrders table tr td:last-child
+{
+  text-align: end;
+}
+.details .recentOrders table tr td:nth-child(2)
+{
+  text-align: end;
+}
+.details .recentOrders table tr td:nth-child(3)
+{
+  text-align: center;
+}
+.status.delivered
+{
+  padding: 2px 4px;
+  background: #8de02c;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.status.pending
+{
+  padding: 2px 4px;
+  background: #f9ca3f;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.status.return
+{
+  padding: 2px 4px;
+  background: #f00;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.status.inprogress
+{
+  padding: 2px 4px;
+  background: #1795ce;
+  color: var(--white);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.recentCustomers
+{
+  position: relative;
+  display: grid;
+  min-height: 100px;
+  max-height: 200px;
+  padding: 20px;
+  background: var(--white);
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+}
+.recentCustomers .imgBx
+{
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.recentCustomers .imgBx img
+{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.recentCustomers table tr td h4
+{
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2em;
+}
+.recentCustomers table tr td h4 span
+{
+  font-size: 14px;
+  color: var(--black2);
+}
+.recentCustomers table tr:hover
+{
+  background: var(--blue);
+  color: var(--white);
+}
+.recentCustomers table tr:hover td h4 span
+{
+  color: var(--white);
+}
+
+#map {
+  height: 500px;
+  width: 100%;
+}
+
+#map2 {
+  height: 500px;
+  width: 100%;
+}
+#map3 {
+  height: 500px;
+  width: 100%;
+}
+
+#hnhsmap {
+  height: 500px;
+  width: 100%;
+}
+/* now, make it Responsive design */
+@media (max-width: 991px)
+{
+  .graphBox
+  {
+    grid-template-columns: 1fr:
+    height: auto;
+  }
+  .navigation
+  {
+    left: -300px;
+  }
+  .navigation.active
+  {
+    width: 300px;
+    left: 0;
+  }
+  .main
+  {
+    width: 100;
+    left: 0;
+  }
+  .main.active
+  {
+    left: 300px;
+  }
+  .cardBox
+  {
+    grid-template-columns: repeat(2,1fr);
+  }
+}
+@media (max-width: 768px)
+{
+  .details
+  {
+    grid-template-columns: repeat(1,1fr);
+  }
+  .recentOrders
+  {
+    overflow-x: auto;
+  }
+  .status.inprogress
+  {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 480px)
+{
+  .cardBox
+  {
+    grid-template-columns: repeat(1,1fr);
+  }
+  .cardHeader h2
+  {
+    font-size: 20px;
+  }
+  .user
+  {
+    min-width: 40px;
+  }
+  .navigation
+  {
+    width: 100%;
+    left: -100%;
+    z-index: 1000;
+  }
+  .navigation.active
+  {
+    width: 100%;
+    left: 0;
+  }
+  .toggle
+  {
+    z-index: 10001;
+  }
+  .main.active .toggle
+  {
+    position: fixed;
+    right: 0;
+    left: initial;
+    color: var(--white);
+
+  }
+}
+
+.info {
+    padding: 6px 8px;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+
+.legend {
+    line-height: 18px;
+    color: #555;
+}
+.legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
+}
+
+/* Button styling */
+#saveAsPngBtn2 {
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: var(--blue);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Hover effect */
+#saveAsPngBtn2:hover {
+  background-color: var(--blue);
+  transform: scale(1.05);
+}
+
+/* Active state */
+#saveAsPngBtn2:active {
+  transform: scale(0.98);
+}
+
+/* Button styling for chart1*/
+#saveAsPngBtn1 {
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: var(--blue);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Hover effect */
+#saveAsPngBtn1:hover {
+  background-color: var(--blue);
+  transform: scale(1.05);
+}
+
+/* Active state */
+#saveAsPngBtn1:active {
+  transform: scale(0.98);
+}
+
+/* Button styling for changeChartType (Bar Chart and Line Chart buttons) */
+.box button {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: var(--blue);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.2s;
+  margin-right: 10px;
+}
+
+/* Hover effect */
+.box button:hover {
+  background-color: #287be6;
+  transform: scale(1.05);
+}
+
+/* Active state */
+.box button:active {
+  transform: scale(0.98);
+}
+
+.graphBox .box img {
+  width: 400px; /* Set a specific width */
+  height: auto; /* Maintain aspect ratio */
+  margin-right: 10px; /* Add margin between the images */
+  border-radius: 8px; /* Add border-radius for rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box-shadow */
+}
+
+/* Styling the Font Awesome icon */
+.graphBox .box i {
+  font-size: 24px; /* Adjust size */
+  color: #333; /* Change color */
+  margin: 0 10px; /* Adjust spacing */
+}
+
+.graphBox .box ion-icon {
+  font-size: 50px; /* Increase the icon size */
+  margin: 0 10px; /* Adjust margin if needed */
+}
+
+/* Add styling for the form container */
+.graphBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 20px;
+}
+
+/* Style the form box */
+.graphBox .box {
+  background: #fff;
+  padding: 20px;
+  width: 100%;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+}
+
+/* Style the form header */
+.graphBox .box h2 {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+/* Style the form label and input */
+.graphBox .box label {
+  display: block;
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+.graphBox .box input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+/* Style the upload button similar to Save as PNG buttons */
+.uploadButton {
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: var(--blue);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+/* Hover effect for the upload button */
+.uploadButton:hover {
+  background-color: #287be6;
+  transform: scale(1.05);
+}
+
+/* Active state for the upload button */
+.uploadButton:active {
+  transform: scale(0.98);
+}
+.cardBox a {
+  text-decoration: none;
+  color: inherit; /* Inherit the color from the parent element */
+}
+
+.cardBox a:hover {
+  text-decoration: none;
+}
+
+.graphBox #doughnut-chart {
+  max-width: 400px;
+  /* CONTENT */
+  .content {
+          margin: 5px auto;
+          border-radius: 5px;
+          min-height: 400px;
+  }
+  .content:after {
+          content: "";
+          display: block;
+          clear: both;
+  }
+  .content .content-title {
+          margin: 10px 0px;
+          color: #374447;
+          font-family: 'Averia Serif Libre', cursive;
+  }
+  .content .post {
+          width: 335px;
+          margin: 9px;
+          min-height: 320px;
+          float: left;
+          border-radius: 2px;
+          border: 1px solid #b3b3b3;
+          position: relative;
+  }
+  .content .post .category {
+          margin-top: 0px;
+          padding: 3px 8px;
+          color: #374447;
+          background: white;
+          display: inline-block;
+          border-radius: 2px;
+          border: 1px solid #374447;
+          box-shadow: 3px 2px 2px;
+          position: absolute;
+          left: 5px; top: 5px;
+          z-index: 3;
+  }
+  .content .post .category:hover {
+          box-shadow: 3px 2px 2px;
+          color: white;
+          background: #374447;
+          transition: .4s;
+          opacity: 1;
+  }
+  .content .post .post_image {
+          height: 260px;
+          width: 100%;
+          background-size: 100%;
+  }
+  .content .post .post_image {
+          width: 100%;
+          height: 260px;
+  }
+  .content .post .post_info {
+          height: 100%;
+          padding: 0px 5px;
+          font-weight: 200;
+      font-family: 'Noto Serif', serif;
+  }
+  .content .post .post_info {
+          color: #222;
+  }
+  .content .post .post_info span {
+          color: #A6A6A6;
+          font-style: italic;
+  }
+  .content .post .post_info span.read_more {
+          position: absolute;
+          right: 5px; bottom: 5px;
+  }/* NOTIFICATION MESSAGES */
+.message {
+        width: 100%;
+        margin: 0px auto;
+        padding: 10px 0px;
+        color: #3c763d;
+        background: #dff0d8;
+        border: 1px solid #3c763d;
+        border-radius: 5px;
+        text-align: center;
+}
+.error {
+        color: #a94442;
+        background: #f2dede;
+        border: 1px solid #a94442;
+        margin-bottom: 20px;
+}
+.validation_errors p {
+        text-align: left;
+        margin-left: 10px;
+}
+.logged_in_info {
+        text-align: right;
+        padding: 10px;
+}
+/* FORM DEFAULTS */
+form h2 {
+        margin: 25px auto;
+        text-align: center;
+        font-family: 'Averia Serif Libre', cursive;
+}
+form input {
+        width: 100%;
+        display: block;
+        padding: 13px 13px;
+        font-size: 1em;
+        margin: 5px auto 10px;
+        border-radius: 3px;
+        box-sizing : border-box;
+        background: transparent;
+        border: 1px solid #3E606F;
+}
+form input:focus {
+        outline: none;
+}
+/* BUTTON DEFAULT */
+.btn {
+        color: white;
+        background: #4E6166;
+        text-align: center;
+        border: none;
+        border-radius: 5px;
+        display: block;
+        letter-spacing: .1em;
+        margin: 10px 0px;
+        padding: 13px 20px;
+        text-decoration: none;
+}
+.container {
+        width: 80%;
+        margin: 0px auto;
+}
+
+.graphBox .box .leaflet-tooltip.custom-tooltip {
+  background: none;
+  border: none;
+  box-shadow: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: #231; /* Black text */
+}
